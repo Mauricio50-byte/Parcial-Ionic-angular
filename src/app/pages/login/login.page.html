@@ -1,13 +1,38 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>Iniciar Sesión</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <app-input
+      formControlName="email"
+      type="email"
+      label="Correo electrónico"
+      placeholder="Ingresa tu correo"
+      [required]="true">
+    </app-input>
+
+    <app-input
+      formControlName="password"
+      type="password"
+      label="Contraseña"
+      placeholder="Ingresa tu contraseña"
+      [required]="true">
+    </app-input>
+
+    <app-button 
+      type="submit" 
+      expand="block"
+      [disabled]="loginForm.invalid">
+      Iniciar Sesión
+    </app-button>
+
+    <div class="register-link">
+      <app-link routerLink="/register">
+        ¿No tienes cuenta? Regístrate
+      </app-link>
+    </div>
+  </form>
 </ion-content>
