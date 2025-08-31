@@ -1,3 +1,8 @@
-<p>
-  button works!
-</p>
+<ion-button
+  [type]="type"
+  [color]="color"
+  [expand]="expand"
+  [disabled]="disabled || loading">
+  <ion-spinner *ngIf="loading" name="dots"></ion-spinner>
+  <ng-content *ngIf="!loading"></ng-content>
+</ion-button>

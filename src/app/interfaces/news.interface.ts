@@ -15,5 +15,5 @@ content: string;
 export interface NewsApiResponse {
     status: string;
     totalResults: number;
-    articles: News[];
+    articles: News[ ];
 }
