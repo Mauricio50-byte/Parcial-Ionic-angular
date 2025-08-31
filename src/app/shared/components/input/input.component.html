@@ -1,3 +1,11 @@
-<p>
-  input works!
-</p>
+<ion-item>
+  <ion-label position="floating" [required]="required">{{ label }}</ion-label>
+  <ion-input
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (ionInput)="onInput($event)"
+    (ionBlur)="onBlur()"
+    [disabled]="disabled">
+  </ion-input>
+</ion-item>
