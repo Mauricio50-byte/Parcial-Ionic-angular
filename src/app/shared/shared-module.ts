@@ -27,7 +27,12 @@ import { StorageProvider } from './providers/storage.provider';
 import { ToastProvider } from './providers/toast.provider';
 
 @NgModule({
-  declarations: [
+  imports: [
+    CommonModule,
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
     InputComponent,
     SelectComponent,
     ButtonComponent,
@@ -39,13 +44,6 @@ import { ToastProvider } from './providers/toast.provider';
     ListComponent,
     ModalComponent,
     UserFormComponent
-  ],
-  imports: [
-    CommonModule,
-    IonicModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule
   ],
   exports: [
     CommonModule,
@@ -74,4 +72,5 @@ import { ToastProvider } from './providers/toast.provider';
     ToastProvider
   ]
 })
+
 export class SharedModule { }

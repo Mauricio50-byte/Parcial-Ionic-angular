@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
 
-  user!: User;
+  user?: User;
   isLoading = true;
 
   constructor(

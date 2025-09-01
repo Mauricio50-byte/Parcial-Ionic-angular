@@ -13,10 +13,10 @@ import { User } from '../../interfaces/user.interface';
 })
 export class HomePage implements OnInit {
 
-  newsResponse!: NewsApiResponse;
-  principalNews!: News;
-  otherNews!: News[];
-  user!: User;
+  newsResponse?: NewsApiResponse;
+  principalNews?: News;
+  otherNews?: News[];
+  user?: User;
   isLoading = true;
 
   constructor(
@@ -26,14 +26,14 @@ export class HomePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.user != await this.userService.getCurrentUser();
-    this.loadNews();
+    this.user = await this.userService.getCurrentUser();
+    this.newsResponse = await this.newsService.getTopHeadlines().toPromise();
   }
 
   async loadNews(event? : any) {
     try {
       this.isLoading = true;
-      this.newsResponse != await this.newsService.getTopHeadlines().toPromise();
+      this.newsResponse = await this.newsService.getTopHeadlines().toPromise();
       
       if (this.newsResponse && this.newsResponse.articles.length > 0) {
         this.principalNews = this.newsResponse.articles[0];

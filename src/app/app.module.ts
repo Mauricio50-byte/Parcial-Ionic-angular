@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@a/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar/';
+import { SplashScreen } from '@capacitor/splash-screen';
+import { StatusBar } from '@capacitor/status-bar';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { httpInterceptor } from '../app/interceptors/http-interceptor';
 import { SharedModule } from './shared/shared-module';
 import { IonicStorageModule } from '@ionic/storage-angular';
@@ -17,7 +17,6 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
     SharedModule,
     IonicStorageModule.forRoot()
   ],
@@ -25,7 +24,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: httpInterceptor, multi: true }
+    provideHttpClient(withInterceptors([httpInterceptor]))
   ],
   bootstrap: [AppComponent]
 })

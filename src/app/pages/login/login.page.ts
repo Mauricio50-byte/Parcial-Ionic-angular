@@ -12,7 +12,7 @@ import { LoaderProvider } from '../../shared/providers/loader.provider';
 })
 export class LoginPage implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   
   constructor(
     private fb: FormBuilder,
