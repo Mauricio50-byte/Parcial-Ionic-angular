@@ -1,5 +1,5 @@
 <ion-item>
-  <ion-label position="floating" [required]="required">{{ label }}</ion-label>
+  <ion-label position="floating">{{ label }}{{ required ? ' *' : '' }}</ion-label>
   <ion-input
     [type]="type"
     [placeholder]="placeholder"

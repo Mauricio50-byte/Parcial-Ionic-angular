@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../interfaces/user.interface';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -27,10 +28,10 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.user = await this.userService.getCurrentUser();
-    this.newsResponse = await this.newsService.getTopHeadlines().toPromise();
+    await this.loadNews();
   }
 
-  async loadNews(event? : any) {
+  async loadNews(event?: any) {
     try {
       this.isLoading = true;
       this.newsResponse = await this.newsService.getTopHeadlines().toPromise();

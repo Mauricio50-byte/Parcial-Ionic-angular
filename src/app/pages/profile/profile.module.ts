@@ -10,6 +10,7 @@ import { ProfilePage } from './profile.page';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     IonicModule,
