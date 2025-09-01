@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 // Importar componentes
@@ -27,12 +27,7 @@ import { StorageProvider } from './providers/storage.provider';
 import { ToastProvider } from './providers/toast.provider';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    IonicModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
+  declarations: [
     InputComponent,
     SelectComponent,
     ButtonComponent,
@@ -45,11 +40,15 @@ import { ToastProvider } from './providers/toast.provider';
     ModalComponent,
     UserFormComponent
   ],
-  exports: [
+  imports: [
     CommonModule,
-    IonicModule,
     FormsModule,
     ReactiveFormsModule,
+    IonicModule,
+    RouterModule
+  ],
+  exports: [
+    // Exportar componentes
     InputComponent,
     SelectComponent,
     ButtonComponent,
@@ -60,7 +59,14 @@ import { ToastProvider } from './providers/toast.provider';
     SideBarComponent,
     ListComponent,
     ModalComponent,
-    UserFormComponent
+    UserFormComponent,
+    // Exportar módulos para que estén disponibles
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    RouterModule,
+    DatePipe
   ],
   providers: [
     NewsService,
@@ -69,8 +75,8 @@ import { ToastProvider } from './providers/toast.provider';
     HttpProvider,
     LoaderProvider,
     StorageProvider,
-    ToastProvider
+    ToastProvider,
+    DatePipe
   ]
 })
-
-export class SharedModule { }
+export class SharedModule {}
