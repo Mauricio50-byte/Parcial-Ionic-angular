@@ -7,7 +7,7 @@ import { UserService } from '../shared/services/user.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   async canActivate(): Promise<boolean> {
     const user = await this.userService.getCurrentUser();
