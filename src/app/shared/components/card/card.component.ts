@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { News } from '../../../interfaces/news.interface';
 
 @Component({
@@ -10,6 +10,6 @@ import { News } from '../../../interfaces/news.interface';
 export class CardComponent {
 
   @Input() news!: News;
-
+  @Output() openNews = new EventEmitter<News>(); 
   constructor() { }
 }

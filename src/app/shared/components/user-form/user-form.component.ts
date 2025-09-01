@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User, Country } from '../../../interfaces/user.interface';
 import { UserService } from '../../services/user.service';
+
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -21,6 +22,14 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService
   ) { }
+
+  // AGREGADO: Getter para transformar countries al formato esperado
+  get countriesForSelect() {
+    return this.countries.map(country => ({
+      id: country.id,
+      value: country.name
+    }));
+  }
 
   async ngOnInit() {
     this.initForm();
@@ -57,7 +66,7 @@ export class UserFormComponent implements OnInit {
       name: this.user.name,
       lastName: this.user.lastName,
       email: this.user.email,
-      country: this.user.contry.id
+      country: this.user.country.id
     });
   }
 
@@ -75,7 +84,7 @@ export class UserFormComponent implements OnInit {
       lastName: formValue.lastName,
       email: formValue.email,
       password: formValue.password,
-      contry:  country!
+      country: country!
     };
 
     this.submitForm.emit(user);
