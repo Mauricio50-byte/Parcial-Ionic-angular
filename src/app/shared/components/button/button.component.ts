@@ -3,7 +3,8 @@ import { Component, Input, HostListener, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+  styleUrls: ['./button.component.scss'],
+  standalone: false
 })
 export class ButtonComponent {
 
@@ -16,11 +17,12 @@ export class ButtonComponent {
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('click', ['$event'])
-  onClick(event: Event) {
+  onClick(event: Event): boolean {
     if (this.disabled || this.loading) {
       event.preventDefault();
       event.stopPropagation();
       return false;
     }
+    return true; // Agregar esta línea
   }
 }

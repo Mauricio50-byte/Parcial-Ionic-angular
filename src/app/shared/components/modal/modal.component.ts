@@ -6,7 +6,8 @@ import { Browser } from '@capacitor/browser';
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.scss'],
+  standalone: false
 })
 export class ModalComponent {
 

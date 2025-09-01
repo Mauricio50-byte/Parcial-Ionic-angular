@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
 import { ToastProvider } from '../../shared/providers/toast.provider';
 import { LoaderProvider } from '../../shared/providers/loader.provider';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss']
+  styleUrls: ['./login.page.scss'],
+  standalone: false
 })
 export class LoginPage implements OnInit {
 

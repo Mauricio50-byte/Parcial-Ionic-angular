@@ -5,7 +5,6 @@ import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { UserService } from '../../shared/services/user.service';
 import { User } from '../../interfaces/user.interface';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',

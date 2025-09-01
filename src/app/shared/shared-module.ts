@@ -41,6 +41,7 @@ import { ToastProvider } from './providers/toast.provider';
     UserFormComponent
   ],
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -60,7 +61,6 @@ import { ToastProvider } from './providers/toast.provider';
     ListComponent,
     ModalComponent,
     UserFormComponent,
-    // Exportar módulos para que estén disponibles
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

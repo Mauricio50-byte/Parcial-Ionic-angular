@@ -5,11 +5,11 @@ import { UserService } from '../../shared/services/user.service';
 import { ToastProvider } from '../../shared/providers/toast.provider';
 import { LoaderProvider } from '../../shared/providers/loader.provider';
 import { User } from '../../interfaces/user.interface';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
+  standalone: false
 })
 export class RegisterPage implements OnInit {
 
