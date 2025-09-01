@@ -9,8 +9,10 @@
     <ion-list>
       <ion-item>
         <ion-label>
-          <h2>{{ user?.name }} {{ user?.lastName }}</h2>
-          <p>{{ user?.email }}</p>
+          <div *ngIf="user">
+            <h2>{{ user.name }} {{ user.lastName }}</h2>
+            <p>{{ user.email }}</p>
+          </div>
         </ion-label>
       </ion-item>
       
