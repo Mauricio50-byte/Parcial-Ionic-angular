@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
 import { ToastProvider } from '../../shared/providers/toast.provider';
 import { LoaderProvider } from '../../shared/providers/loader.provider';
 import { User } from '../../interfaces/user.interface';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -13,10 +13,7 @@ import { User } from '../../interfaces/user.interface';
 })
 export class RegisterPage implements OnInit {
 
-  registerForm!: FormGroup;
-
   constructor(
-    private fb: FormBuilder,
     private userService: UserService,
     private toast: ToastProvider,
     private loader: LoaderProvider,
@@ -24,29 +21,10 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      country: [null, Validators.required]
-    });
+    // Inicialización si es necesaria
   }
 
-  async onSubmit() {
-    if (this.registerForm.invalid) {
-      return;
-    }
-
-    const { confirmPassword, ...userData } = this.registerForm.value;
-    
-    // Verificar que las contraseñas coincidan
-    if (userData.password !== confirmPassword) {
-      this.toast.present('Las contraseñas no coinciden', 3000, 'danger');
-      return;
-    }
-
+  async onSubmit(userData: User) {
     const loading = await this.loader.present('Registrando usuario...');
     
     try {
@@ -54,8 +32,8 @@ export class RegisterPage implements OnInit {
       const id = this.generateUUID();
       
       const user: User = {
-        id,
-        ...userData
+        ...userData,
+        id
       };
       
       const success = await this.userService.register(user);
@@ -67,6 +45,7 @@ export class RegisterPage implements OnInit {
         this.toast.present('Error al registrar usuario', 3000, 'danger');
       }
     } catch (error) {
+      console.error('Error en registro:', error);
       this.toast.present('Error al registrar usuario', 3000, 'danger');
     } finally {
       this.loader.dismiss();
