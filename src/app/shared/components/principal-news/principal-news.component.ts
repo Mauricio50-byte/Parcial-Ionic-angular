@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { News } from '../../../interfaces/news.interface';
 
 @Component({
   selector: 'app-principal-news',
   templateUrl: './principal-news.component.html',
-  styleUrls: ['./principal-news.component.scss'],
+  styleUrls: ['./principal-news.component.scss']
 })
-export class PrincipalNewsComponent  implements OnInit {
+export class PrincipalNewsComponent {
+
+  @Input() news!: News;
+  @Output() openNews = new EventEmitter<News>();
 
   constructor() { }
 
-  ngOnInit() {}
-
+  onOpenNews() {
+    this.openNews.emit(this.news);
+  }
 }

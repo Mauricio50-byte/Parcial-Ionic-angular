@@ -1,3 +1,10 @@
-<p>
-  principal-news works!
-</p>
+ion-card (click)="onOpenNews()">
+  <ion-img [src]="news.urlToImage" [alt]="news.title"></ion-img>
+  <ion-card-header>
+    <ion-card-title>{{ news.title }}</ion-card-title>
+    <ion-card-subtitle>{{ news.source.name }} • {{ news.publishedAt | date:'short' }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <p>{{ news.description }}</p>
+  </ion-card-content>
+</ion-card>
