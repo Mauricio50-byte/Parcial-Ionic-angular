@@ -1,8 +1,89 @@
 <ion-header>
-  <app-header [user]="user!"></app-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Noticias</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <!-- Sección de Perfil -->
+    <div class="profile-section" *ngIf="user">
+      <ion-avatar class="profile-avatar">
+        <img [src]="user.avatar || 'assets/default-avatar.png'" alt="Avatar">
+      </ion-avatar>
+      <h3>{{ user.name || 'Usuario' }}</h3>
+      <p>{{ user.email || 'email@ejemplo.com' }}</p>
+    </div>
+    
+    <ion-list>
+      <!-- Categorías de Noticias -->
+      <ion-list-header>
+        <ion-label>Categorías</ion-label>
+      </ion-list-header>
+      
+      <ion-item button (click)="filterByCategory('general')" [class.active]="selectedCategory === 'general'">
+        <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+        <ion-label>General</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('business')" [class.active]="selectedCategory === 'business'">
+        <ion-icon name="briefcase-outline" slot="start"></ion-icon>
+        <ion-label>Negocios</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('technology')" [class.active]="selectedCategory === 'technology'">
+        <ion-icon name="laptop-outline" slot="start"></ion-icon>
+        <ion-label>Tecnología</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('sports')" [class.active]="selectedCategory === 'sports'">
+        <ion-icon name="football-outline" slot="start"></ion-icon>
+        <ion-label>Deportes</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('health')" [class.active]="selectedCategory === 'health'">
+        <ion-icon name="medical-outline" slot="start"></ion-icon>
+        <ion-label>Salud</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('entertainment')" [class.active]="selectedCategory === 'entertainment'">
+        <ion-icon name="film-outline" slot="start"></ion-icon>
+        <ion-label>Entretenimiento</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="filterByCategory('science')" [class.active]="selectedCategory === 'science'">
+        <ion-icon name="flask-outline" slot="start"></ion-icon>
+        <ion-label>Ciencia</ion-label>
+      </ion-item>
+      
+      <!-- Opciones adicionales -->
+      <ion-list-header>
+        <ion-label>Opciones</ion-label>
+      </ion-list-header>
+      
+      <ion-item button (click)="openSettings()">
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-label>Configuración</ion-label>
+      </ion-item>
+      
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="main-content">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -19,7 +100,7 @@
 
     <ion-list>
       <ion-list-header>
-        <h2>Otras Noticias</h2>
+        <h2>{{ getCategoryTitle() }}</h2>
       </ion-list-header>
       
       <app-card 

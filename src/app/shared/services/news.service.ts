@@ -20,4 +20,9 @@ export class NewsService {
     const url = `${environment.apiUrl.news}/everything?q=${query}`;
     return this.httpProvider.get<NewsApiResponse>(url);
   }
+
+  getNewsByCategory(category: string, country: string = 'us'): Observable<NewsApiResponse> {
+    const url = `${environment.apiUrl.news}/top-headlines?category=${category}&country=${country}`;
+    return this.httpProvider.get<NewsApiResponse>(url);
+  }
 }
