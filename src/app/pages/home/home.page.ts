@@ -30,7 +30,7 @@ export class HomePage implements OnInit {
     this.loadNews();
   }
 
-  async loadNews(event?) {
+  async loadNews(event? : any) {
     try {
       this.isLoading = true;
       this.newsResponse != await this.newsService.getTopHeadlines().toPromise();
@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  async doRefresh(event) {
+  async doRefresh(event: any) {
     await this.loadNews(event);
   }
 }

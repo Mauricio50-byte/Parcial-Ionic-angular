@@ -1,13 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
+<ion-header>
+  <app-header [user]="user"></app-header>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <div *ngIf="!isLoading && principalNews">
+    <app-principal-news 
+      [news]="principalNews" 
+      (openNews)="openNewsModal($event)">
+    </app-principal-news>
+
+    <ion-list>
+      <ion-list-header>
+        <h2>Otras Noticias</h2>
+      </ion-list-header>
+      
+      <app-card 
+        *ngFor="let news of otherNews" 
+        [news]="news" 
+        (openNews)="openNewsModal($event)">
+      </app-card>
+    </ion-list>
+  </div>
+
+  <div *ngIf="!isLoading && (!newsResponse || newsResponse.articles.length === 0)" class="no-news">
+    <p>No se encontraron noticias</p>
+  </div>
 </ion-content>
