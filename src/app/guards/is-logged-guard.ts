@@ -1,21 +1,25 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class IsLoggedGuard implements CanActivate {
+export const isLoggedGuard: CanActivateFn = async (route, state) => {
+  const userService = inject(UserService);
+  const router = inject(Router);
 
-  constructor(private userService: UserService, private router: Router) { }
-
-  async canActivate(): Promise<boolean> {
-    const user = await this.userService.getCurrentUser();
+  try {
+    const user = await userService.getCurrentUser();
+    
     if (user) {
-      this.router.navigate(['/home']);
+      // Si el usuario ya está logueado, redirigir a home
+      router.navigate(['/home']);
       return false;
     } else {
+      // Si no está logueado, permitir acceso a login/register
       return true;
     }
+  } catch (error) {
+    console.error('Error en isLoggedGuard:', error);
+    // En caso de error, permitir acceso para no bloquear la app
+    return true;
   }
-}
+};

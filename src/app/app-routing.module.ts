@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../app/guards/auth-guard';
-import { IsLoggedGuard } from '../app/guards/is-logged-guard';
+import { authGuard } from '../app/guards/auth-guard';
+import { isLoggedGuard } from '../app/guards/is-logged-guard';
 
 const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
-    canActivate: [IsLoggedGuard]
+    canActivate: [isLoggedGuard]
   },
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule),
-    canActivate: [IsLoggedGuard]
+    canActivate: [isLoggedGuard]
   },
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
-    canActivate: [AuthGuard]
+    canActivate: [authGuard]
   },
   {
     path: '',

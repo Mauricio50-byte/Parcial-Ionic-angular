@@ -7,9 +7,13 @@
 <ion-content class="ion-padding">
   <app-user-form (submitForm)="onSubmit($event)"></app-user-form>
   
-  <div class="login-link">
-    <app-link routerLink="/login">
+  <div class="ion-text-center ion-margin-top">
+    <ion-button 
+      routerLink="/login"
+      fill="clear"
+      color="dark"
+      expand="block">
       ¿Ya tienes cuenta? Inicia sesión
-    </app-link>
+    </ion-button>
   </div>
-</ion-content>
+</ion-content>t>

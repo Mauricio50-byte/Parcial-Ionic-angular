@@ -10,4 +10,7 @@ export interface Country {
     id: string;
     name: string;
     value?: string;
+    iso2?: string;
+    iso3?: string;
+    unicodeFlag?: string;
 }

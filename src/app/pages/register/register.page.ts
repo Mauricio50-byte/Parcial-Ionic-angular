@@ -40,6 +40,7 @@ export class RegisterPage implements OnInit {
       
       if (success) {
         this.toast.present('Usuario registrado correctamente');
+        // Esta línea es la que te envía a la página de login.
         this.router.navigate(['/login']);
       } else {
         this.toast.present('Error al registrar usuario', 3000, 'danger');

@@ -22,17 +22,21 @@
       [required]="true">
     </app-input>
 
-    <app-button 
-      type="submit" 
+    <ion-button
+      type="submit"
       expand="block"
       [disabled]="loginForm.invalid">
       Iniciar Sesión
-    </app-button>
+    </ion-button>
 
-    <div class="register-link">
-      <app-link routerLink="/register">
+    <div class="ion-text-center ion-margin-top">
+      <ion-button 
+        routerLink="/register"
+        fill="clear"
+        color="dark"
+        expand="block">
         ¿No tienes cuenta? Regístrate
-      </app-link>
+      </ion-button>
     </div>
   </form>
 </ion-content>

@@ -86,9 +86,12 @@ export class UserService {
       
       // Obtener países de la API
       const response: any = await this.http.get(environment.apiUrl.flags).toPromise();
+      
+      // CORRECCIÓN: La respuesta tiene una estructura diferente
       const countries: Country[] = response.data.map((country: any) => ({
         id: country.name,
-        value: `${country.flag} ${country.name}`
+        name: country.name, // Agregar name también
+        value: country.name, // Solo el nombre, sin la bandera por ahora
       }));
       
       // Guardar en caché
@@ -97,7 +100,15 @@ export class UserService {
       return countries;
     } catch (error) {
       console.error('Error al obtener países:', error);
-      return [];
+      // CORRECCIÓN: Devolver países por defecto en caso de error
+      const defaultCountries: Country[] = [
+        { id: '1', name: 'Colombia', value: 'Colombia' },
+        { id: '2', name: 'Estados Unidos', value: 'Estados Unidos' },
+        { id: '3', name: 'México', value: 'México' },
+        { id: '4', name: 'España', value: 'España' },
+        { id: '5', name: 'Argentina', value: 'Argentina' }
+      ];
+      return defaultCountries;
     }
   }
 }
