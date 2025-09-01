@@ -1,3 +1,55 @@
-<p>
-  user-form works!
-</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <app-input
+    formControlName="name"
+    label="Nombre"
+    placeholder="Ingresa tu nombre"
+    [required]="true">
+  </app-input>
+
+  <app-input
+    formControlName="lastName"
+    label="Apellido"
+    placeholder="Ingresa tu apellido"
+    [required]="true">
+  </app-input>
+
+  <app-input
+    formControlName="email"
+    type="email"
+    label="Correo electrónico"
+    placeholder="Ingresa tu correo"
+    [required]="true">
+  </app-input>
+
+  <app-input
+    formControlName="password"
+    type="password"
+    label="Contraseña"
+    placeholder="Ingresa tu contraseña"
+    [required]="!user">
+  </app-input>
+
+  <app-input
+    formControlName="confirmPassword"
+    type="password"
+    label="Confirmar contraseña"
+    placeholder="Confirma tu contraseña"
+    [required]="!user">
+  </app-input>
+
+  <app-select
+    formControlName="country"
+    label="País"
+    placeholder="Selecciona tu país"
+    [options]="countries"
+    [required]="true"
+    [disabled]="isLoading">
+  </app-select>
+
+  <app-button 
+    type="submit" 
+    expand="block"
+    [disabled]="userForm.invalid">
+    {{ user ? 'Actualizar' : 'Registrar' }}
+  </app-button>
+</form>
